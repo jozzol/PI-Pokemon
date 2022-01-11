@@ -53,8 +53,10 @@ const getApiInfo = async () => {
 }
 
 const getDbInfo =  async () => {
-    return await Pokemon.findAll({
-        include:{
+
+    let search = await Pokemon.findAll({
+        include:
+        {
             model: Type,
             attributes: ['name'],
             through: {
@@ -62,6 +64,9 @@ const getDbInfo =  async () => {
             },
         }
     })
+    // search.forEach(x => console.log(x.types[0].dataValues))
+    // search.forEach(x => x.types[0].dataValues.name)
+    return search
 }
 
 const getAllPokemon = async () =>{
