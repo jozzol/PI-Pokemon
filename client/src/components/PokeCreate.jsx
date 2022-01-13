@@ -4,6 +4,7 @@ import { postPokemon, getTypes } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import Select from 'react-select'
+import './PokeCreate.css';
 
 function validateName(input){
     let error = {};
@@ -177,11 +178,11 @@ export default function PokeCreate(){
                 />
                 <div>
                 <label>TYPE:</label>
-                <Select onChange={e =>handleChangeTypes(e)} options={optionsT} placeholder='Select types' isMulti= 'true' />
+                <Select className='react-select'onChange={e =>handleChangeTypes(e)} options={optionsT} placeholder='Select types' isMulti= 'true' />
 
                 </div>
                 </div>
-                <button type='submit'>Create new pokemon</button>
+                <button className='btnSub'type='submit'>Create new pokemon</button>
 
             </form>
         </div>

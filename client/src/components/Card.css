@@ -1,0 +1,23 @@
+.inside {
+    display: inline-block;
+}
+
+.card {
+    display: inline-block;
+    margin: 30px;
+    background-color: rgb(211, 11, 11);
+    border-width: thin;
+    border-style: solid;
+    border-color: red;
+    color: black;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+}
+.card img{
+    margin-bottom: 0px;
+    width: 100%;
+    border-width: thin;
+    border-style: solid;
+    border-color: red;
+    background-color: white;
+}

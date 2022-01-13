@@ -8,6 +8,7 @@ import Card from "./Card";
 import Select from 'react-select'
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
+import './Home.css';
 
 export default function Home(){
 const dispatch = useDispatch()
@@ -19,6 +20,28 @@ const [pokemonPerPage, setPokemonPerPage] = useState(12)
 const indexOfLastPokemon = currentPage * pokemonPerPage
 const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage
 const currentPokemon = allPokemon.slice(indexOfFirstPokemon, indexOfLastPokemon)
+
+const customStyles = {
+    container: provided => ({
+      ...provided,
+      width: 150,
+    }),
+    option: (provided, state) =>({
+        ...provided,
+        minWidth: 150,
+        color: state.isSelected ? 'red': 'black',
+    }),
+    menu: (provided, state) => ({
+        ...provided,
+        width: state.selectProps.width,
+        color: state.selectProps.menuColor,
+        padding: 5,
+      }),
+      control: (provided, state) => ({
+        ...provided,
+        width: 150,
+      })
+  };
 
 const paginado = (pageNumber) => {
     setCurrentPage(pageNumber)
@@ -70,25 +93,27 @@ const options3 = [{value:'all', label:'All'}].concat(allTypes.map(t =>({
 })))
 
 const options4 = [
-    {value: '>', label: 'Bigger attack'},
-    {value: '<', label: 'Lower attack'}
+    {value: '>', label: 'Lower attack'},
+    {value: '<', label: 'Bigger attack'}
 ]
 
 
 
 return (
     <div>
-        <Link to= '/CreatePokemon'>Create pokemon</Link>
-        <h1>Henry Pokemon</h1>
-        <button onClick={e=> {handleClick(e)}}>
-            Load all pokemon
-        </button>
-        <div>
-            <Select onChange={e => handleSortByName(e)} options={options1} placeholder='Order by name'/>
-            <Select onChange={e => handleSortByattack(e)} options={options4} placeholder='Order by attack'/>
-            <Select onChange={e => handleFilterByCreate(e)} options={options2} placeholder='Filer created'/>
-            <Select onChange={e => handleFilterByType(e)} options={options3} placeholder='Filter by type'/>
+            <h1>Henry Pokemon</h1>
+        <div className="inside">
+            <Link to= '/CreatePokemon'><button>Create pokemon</button></Link>
+            <button onClick={e=> {handleClick(e)}}>
+                Load all pokemon
+            </button>
             <SearchBar/>
+        </div>
+        <div>
+            <Select className="react-select" onChange={e => handleSortByName(e)} options={options1} placeholder='Order by name'  styles={customStyles}/>
+            <Select className="react-select" onChange={e => handleSortByattack(e)} options={options4} placeholder='Order by attack'  styles={customStyles}/>
+            <Select className="react-select" onChange={e => handleFilterByCreate(e)} options={options2} placeholder='Filer created'  styles={customStyles}/>
+            <Select className="react-select" onChange={e => handleFilterByType(e)} options={options3} placeholder='Filter by type'  styles={customStyles}/>
             <Paginado
                 pokemonPerPage={pokemonPerPage}
                 allPokemon={allPokemon.length}
@@ -97,7 +122,7 @@ return (
             {
                 currentPokemon.map && currentPokemon.map(p =>{
                     return (
-                    <Card name={p.name} image={p.image} key={p.id} id={p.id} type={!p.createdInDb? p.type + (' '): p.types.map(t => t.name + (' '))} attack={p.attack}/>
+                    <Card name={p.name} image={p.image} key={p.id} id={p.id} type={!p.createdInDb? p.type + (' '): p.types.map(t => t.name + (' '))} attack={p.attack} defense={p.defense}/>
                     )
                 })
             }

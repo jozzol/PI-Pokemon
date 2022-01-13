@@ -1,0 +1,28 @@
+.landing {
+    background-image: url('../images/landing-bg2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    font-family: 'Press Start 2P', cursive;
+    color: black;
+}
+
+button {
+        background-color: white;
+        border-radius: 5%;
+        color: rgb(0, 0, 0);
+        opacity: .9;
+        width: 100px;
+        height: 40px;
+        font-size: 10px;
+        font-family: 'Press Start 2P', cursive;
+}
+
+a{
+    text-decoration: none;
+    color: white
+}

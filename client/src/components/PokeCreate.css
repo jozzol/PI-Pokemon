@@ -1,0 +1,18 @@
+label{
+    display: inline-block;
+    width: 100px;
+    position: relative;
+}
+
+.react-select {
+    color: black;
+    position: fixed;
+    /* justify-content: 'center';
+    align-items: center; */
+    font-family: 'Press Start 2P', cursive;
+    width: 220px;
+    font-size: 10px;
+}
+.btnSub{
+    width: 200px;
+}

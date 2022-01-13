@@ -64,8 +64,6 @@ const getDbInfo =  async () => {
             },
         }
     })
-    // search.forEach(x => console.log(x.types[0].dataValues))
-    // search.forEach(x => x.types[0].dataValues.name)
     return search
 }
 
@@ -78,7 +76,6 @@ const getAllPokemon = async () =>{
 
 router.get(`/pokemon`, async(req, res) =>{
     const name = req.query.name
-    // const id = req.query.id
 
     let findPokemon = await getAllPokemon();
     if(name){

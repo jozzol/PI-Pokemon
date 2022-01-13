@@ -1,0 +1,25 @@
+body{
+    background-image: url('../images/home-bg.jpg');
+    color: white;
+    background-size: cover;
+
+}
+.inside {
+    display: inline-flex;
+}
+
+.react-select {
+    color: black;
+    position: center;
+    display: inline-flex;
+    justify-content: 'center';
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.Select-value{
+    width: 100px;
+}
