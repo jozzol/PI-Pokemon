@@ -2,6 +2,7 @@ body{
     background-image: url('../images/home-bg.jpg');
     color: white;
     background-size: cover;
+    font-family: 'Press Start 2P', cursive;
 
 }
 .inside {
@@ -22,4 +23,12 @@ body{
 
 .Select-value{
     width: 100px;
+}
+
+.elVisible{
+    display: block;
+}
+
+.elNotVisible{
+    display: none;
 }

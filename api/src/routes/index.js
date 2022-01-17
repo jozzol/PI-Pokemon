@@ -12,34 +12,24 @@ const router = Router();
 
 
 const getApiInfo = async () => {
-    // const apiUrl = await axios.get(`https://pokeapi.co/api/v2/pokemon`);
-    // const apiInfo = apiUrl.data.results.map(x => {
-    //     return {
-    //         name: x.name,
-    //         url: x.url,
-    //     };
-    // })
-    // const allPokemon = [];
-    // function pokemonDetails (result){
-    //     result.forEach(async (pokemon) => {
-    //         const res = await axios.get(`${pokemon.url}`);
-    //         console.log(res.data)
+    const apiUrl = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=40`);
+    const apiData = apiUrl.data.results.map(x => {
+        return {
+            name: x.name,
+            url: x.url,
+        };
+    })
 
-    //         allPokemon.push(res.data)
+    var allPokemon = [];
 
-    //     });
-    //     return allPokemon
-    // } 
-    // return pokemonDetails(apiInfo)
-    // // return apiInfo;
-
-    var info = []
-    for(let i =1; i < 40; i++){
-        var apiInfo = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`);
-        info.push({
+    for(pokemon of apiData){
+        // console.log(pokemon)
+    var apiInfo = await axios.get(`${pokemon.url}`);
+        allPokemon.push({
             id: apiInfo.data.id,
             name: apiInfo.data.name,
             image: apiInfo.data.sprites.front_default,
+            imageDetail: apiInfo.data.sprites.other.dream_world.front_default,
             hp: apiInfo.data.stats[0].base_stat,
             attack: apiInfo.data.stats[1].base_stat,
             defense: apiInfo.data.stats[2].base_stat,
@@ -49,7 +39,25 @@ const getApiInfo = async () => {
             type: apiInfo.data.types.map(x => x.type.name)
         })
     }
-    return info
+    return allPokemon
+
+    // var info = []
+    // for(let i =1; i < 40; i++){
+    //     var apiInfo = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`);
+    //     info.push({
+    //         id: apiInfo.data.id,
+    //         name: apiInfo.data.name,
+    //         image: apiInfo.data.sprites.front_default,
+    //         hp: apiInfo.data.stats[0].base_stat,
+    //         attack: apiInfo.data.stats[1].base_stat,
+    //         defense: apiInfo.data.stats[2].base_stat,
+    //         speed: apiInfo.data.stats[5].base_stat,
+    //         height: apiInfo.data.height,
+    //         weight: apiInfo.data.weight,
+    //         type: apiInfo.data.types.map(x => x.type.name)
+    //     })
+    // }
+    // return info
 }
 
 const getDbInfo =  async () => {

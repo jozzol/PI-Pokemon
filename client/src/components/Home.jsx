@@ -8,6 +8,7 @@ import Card from "./Card";
 import Select from 'react-select'
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
+import loadingImage from '../images/run_pikachu.gif';
 import './Home.css';
 
 export default function Home(){
@@ -20,6 +21,7 @@ const [pokemonPerPage, setPokemonPerPage] = useState(12)
 const indexOfLastPokemon = currentPage * pokemonPerPage
 const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage
 const currentPokemon = allPokemon.slice(indexOfFirstPokemon, indexOfLastPokemon)
+const [loading, setLoading] = useState(false);
 
 const customStyles = {
     container: provided => ({
@@ -55,8 +57,9 @@ useEffect(() => {
 }, [dispatch])
 
 function handleClick(e){
+    allPokemon = null;
     e.preventDefault();
-    dispatch(getPokemon());
+    dispatch(filterPokemonByType('all'))
 }
 
 function handleFilterByType(e){
@@ -101,32 +104,52 @@ const options4 = [
 
 return (
     <div>
-            <h1>Henry Pokemon</h1>
-        <div className="inside">
-            <Link to= '/CreatePokemon'><button>Create pokemon</button></Link>
-            <button onClick={e=> {handleClick(e)}}>
-                Load all pokemon
-            </button>
-            <SearchBar/>
-        </div>
-        <div>
-            <Select className="react-select" onChange={e => handleSortByName(e)} options={options1} placeholder='Order by name'  styles={customStyles}/>
-            <Select className="react-select" onChange={e => handleSortByattack(e)} options={options4} placeholder='Order by attack'  styles={customStyles}/>
-            <Select className="react-select" onChange={e => handleFilterByCreate(e)} options={options2} placeholder='Filer created'  styles={customStyles}/>
-            <Select className="react-select" onChange={e => handleFilterByType(e)} options={options3} placeholder='Filter by type'  styles={customStyles}/>
-            <Paginado
-                pokemonPerPage={pokemonPerPage}
-                allPokemon={allPokemon.length}
-                paginado={paginado}
-            />
-            {
-                currentPokemon.map && currentPokemon.map(p =>{
-                    return (
-                    <Card name={p.name} image={p.image} key={p.id} id={p.id} type={!p.createdInDb? p.type + (' '): p.types.map(t => t.name + (' '))} attack={p.attack} defense={p.defense}/>
-                    )
-                })
-            }
-        </div>
+        {allPokemon.length > 0?
+        <><h1>Pokedex</h1><div className="inside">
+                <Link to='/CreatePokemon'><button>Create pokemon</button></Link>
+                <button onClick={e => { handleClick(e); } }>
+                    Load all pokemon
+                </button>
+                <SearchBar />
+            </div><div>
+                    <Select className="react-select" onChange={e => handleSortByName(e)} options={options1} placeholder='Order by name' styles={customStyles} />
+                    <Select className="react-select" onChange={e => handleSortByattack(e)} options={options4} placeholder='Order by attack' styles={customStyles} />
+                    <Select className="react-select" onChange={e => handleFilterByCreate(e)} options={options2} placeholder='Filer created' styles={customStyles} />
+                    <Select className="react-select" onChange={e => handleFilterByType(e)} options={options3} placeholder='Filter by type' styles={customStyles} />
+                    <img className={loading ? 'elVisible' : 'elNotVisible'} src={loadingImage} alt='loading' />
+                    <Paginado
+                        pokemonPerPage={pokemonPerPage}
+                        allPokemon={allPokemon.length}
+                        paginado={paginado} />
+                    {currentPokemon.map && currentPokemon.map(p => {
+                        return (
+                            <Card name={p.name} image={p.image} key={p.id} id={p.id} type={!p.createdInDb ? p.type + (' ') : p.types.map(t => t.name + (' '))} attack={p.attack} defense={p.defense} />
+                        );
+                    })}
+                </div></>
+                :
+                <div>
+                    <h1>Pokedex</h1><div className="inside">
+                <Link to='/CreatePokemon'><button>Create pokemon</button></Link>
+                <button onClick={e => { handleClick(e); } }>
+                    Load all pokemon
+                </button>
+                <SearchBar />
+                </div><div>
+                    <Select className="react-select" onChange={e => handleSortByName(e)} options={options1} placeholder='Order by name' styles={customStyles} />
+                    <Select className="react-select" onChange={e => handleSortByattack(e)} options={options4} placeholder='Order by attack' styles={customStyles} />
+                    <Select className="react-select" onChange={e => handleFilterByCreate(e)} options={options2} placeholder='Filer created' styles={customStyles} />
+                    <Select className="react-select" onChange={e => handleFilterByType(e)} options={options3} placeholder='Filter by type' styles={customStyles} />
+                    <img className={loading ? 'elVisible' : 'elNotVisible'} src={loadingImage} alt='loading' />
+                    <Paginado
+                        pokemonPerPage={pokemonPerPage}
+                        allPokemon={allPokemon.length}
+                        paginado={paginado} />
+                <h1>Loading pokemon...</h1>                     
+                <img src={loadingImage} alt='loading'/>
+                </div>
+                </div>
+                }
     </div>
 )
 
