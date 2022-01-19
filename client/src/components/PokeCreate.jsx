@@ -10,7 +10,7 @@ function validateName(input){
     let error = {};
     if(!input.name){
         error.name = 'Name your pokemon';
-    } 
+    }
     return error;
 }
 

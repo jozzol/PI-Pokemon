@@ -23,6 +23,7 @@ export default function PokeDetails(){
                 <img src={myPokemon[0].imageDetail} alt='' width='450px' height='450px'></img>
                 <h1>{myPokemon[0].name}</h1>
                     <div className="detail-card">
+                        <p>ID: {myPokemon[0].id} </p>
                         <p>HP: {myPokemon[0].hp} </p>
                         <p>ATTACK: {myPokemon[0].attack} </p>
                         <p>DEFENSE: {myPokemon[0].defense} </p>

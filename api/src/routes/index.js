@@ -41,23 +41,23 @@ const getApiInfo = async () => {
     }
     return allPokemon
 
-    // var info = []
-    // for(let i =1; i < 40; i++){
-    //     var apiInfo = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`);
-    //     info.push({
-    //         id: apiInfo.data.id,
-    //         name: apiInfo.data.name,
-    //         image: apiInfo.data.sprites.front_default,
-    //         hp: apiInfo.data.stats[0].base_stat,
-    //         attack: apiInfo.data.stats[1].base_stat,
-    //         defense: apiInfo.data.stats[2].base_stat,
-    //         speed: apiInfo.data.stats[5].base_stat,
-    //         height: apiInfo.data.height,
-    //         weight: apiInfo.data.weight,
-    //         type: apiInfo.data.types.map(x => x.type.name)
-    //     })
-    // }
-    // return info
+//     // var info = []
+//     // for(let i =1; i < 40; i++){
+//     //     var apiInfo = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`);
+//     //     info.push({
+//     //         id: apiInfo.data.id,
+//     //         name: apiInfo.data.name,
+//     //         image: apiInfo.data.sprites.front_default,
+//     //         hp: apiInfo.data.stats[0].base_stat,
+//     //         attack: apiInfo.data.stats[1].base_stat,
+//     //         defense: apiInfo.data.stats[2].base_stat,
+//     //         speed: apiInfo.data.stats[5].base_stat,
+//     //         height: apiInfo.data.height,
+//     //         weight: apiInfo.data.weight,
+//     //         type: apiInfo.data.types.map(x => x.type.name)
+//     //     })
+//     // }
+//     // return info
 }
 
 const getDbInfo =  async () => {
@@ -90,7 +90,7 @@ router.get(`/pokemon`, async(req, res) =>{
         let pokemonName = await findPokemon.filter(x => x.name.toLowerCase().includes(name.toLowerCase()))
         pokemonName.length ?
         res.status(200).send(pokemonName):
-        res.status(404).send('No esta el Pokemon');
+        res.status(404).send('Pokemon not found');
 
     }
 

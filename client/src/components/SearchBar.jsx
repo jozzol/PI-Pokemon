@@ -11,12 +11,11 @@ export default function SearchBar(){
     function handleInputChange(e){
         e.preventDefault()
         setName(e.target.value)
-        console.log(name)
+        // console.log(name)
     }
 
     function handleSubmit(e){
-        e.preventDefault();
-        dispatch(getNamePokemon(name))
+        dispatch(getNamePokemon(e))
     }
 
     return (
@@ -26,7 +25,7 @@ export default function SearchBar(){
                 placeholder="Search pokemon..."
                 onChange={(e) => handleInputChange(e)}
             />
-            <button type='submit' onClick={(e) => handleSubmit(e)}>Search</button>
+            <button type='submit' onClick={(e) => handleSubmit(name)}>Search</button>
         </div>
     )
 }

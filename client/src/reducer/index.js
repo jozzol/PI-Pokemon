@@ -22,16 +22,19 @@ function rootReducer(state = initialState, action){
                 type: action.payload
             }
         case 'GET_NAME_POKEMON':
+            const nameFiltered = allPokemon.filter(p => p.name === action.payload)
+            // console.log(action.payload)
             return {
                 ...state,
-                pokemon: action.payload
+                pokemon: nameFiltered
             }
         case "POST_POKEMON":
             return{
                 ...state,
             }
         case 'FILTER_BY_TYPE':
-            const typeFiltered = action.payload.value === 'all' ? allPokemon: allPokemon.filter(p => !p.createdInDb? p.type.includes(action.payload.value): p.types.map(t => t.name).includes(action.payload.value))
+            // console.log(action.payload)
+            const typeFiltered = action.payload.value === 'all'|| action.payload === 'all'? allPokemon: allPokemon.filter(p => !p.createdInDb? p.type.includes(action.payload.value): p.types.map(t => t.name).includes(action.payload.value))
             return{
                 ...state,
                 pokemon: typeFiltered

@@ -56,9 +56,7 @@ useEffect(() => {
 
 }, [dispatch])
 
-function handleClick(e){
-    allPokemon = null;
-    e.preventDefault();
+function handleClick(){
     dispatch(filterPokemonByType('all'))
 }
 
@@ -67,6 +65,7 @@ function handleFilterByType(e){
 }
 
 function handleFilterByCreate(e){
+    // console.log(e)
     dispatch(filterPokemonByCreate(e))
 }
 
@@ -107,7 +106,7 @@ return (
         {allPokemon.length > 0?
         <><h1>Pokedex</h1><div className="inside">
                 <Link to='/CreatePokemon'><button>Create pokemon</button></Link>
-                <button onClick={e => { handleClick(e); } }>
+                <button onClick={e => { handleClick(e); }  }>
                     Load all pokemon
                 </button>
                 <SearchBar />
@@ -145,7 +144,7 @@ return (
                         pokemonPerPage={pokemonPerPage}
                         allPokemon={allPokemon.length}
                         paginado={paginado} />
-                <h1>Loading pokemon...</h1>                     
+                <h1>Loading pokemon...</h1>                
                 <img src={loadingImage} alt='loading'/>
                 </div>
                 </div>
