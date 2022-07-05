@@ -61,20 +61,24 @@ export default function PokeCreate(){
     function handleSubmit(e){
         e.preventDefault();
         console.log(input)
-        dispatch(postPokemon(input))
-        alert('Pokemon created!')
-        setInput({
-            name:'',
-            hp:0,
-            attack:0,
-            defense:0,
-            speed:0,
-            height:0,
-            weight:0,
-            image:'',
-            type: []
-        })
-        navigate('/home')
+        try{
+            dispatch(postPokemon(input))
+            alert('Pokemon created!')
+            setInput({
+                name:'',
+                hp:0,
+                attack:0,
+                defense:0,
+                speed:0,
+                height:0,
+                weight:0,
+                image:'',
+                type: []
+            })
+            navigate('/home')
+        }catch (error){
+            alert('Pokemon already exists')
+        }
     }
 
     useEffect(()=>{

@@ -86,7 +86,7 @@ const options1 = [
     {value: 'z-a', label: 'Z-A'}
 ]
 const options2 = [
-    {value: 'all', label: 'All'},
+    // {value: 'all', label: 'All'},
     {value: 'created', label: 'Created'},
     {value: 'official', label: 'Official'}
 ]
@@ -115,14 +115,14 @@ return (
                     <Select className="react-select" onChange={e => handleSortByattack(e)} options={options4} placeholder='Order by attack' styles={customStyles} />
                     <Select className="react-select" onChange={e => handleFilterByCreate(e)} options={options2} placeholder='Filer created' styles={customStyles} />
                     <Select className="react-select" onChange={e => handleFilterByType(e)} options={options3} placeholder='Filter by type' styles={customStyles} />
-                    <img className={loading ? 'elVisible' : 'elNotVisible'} src={loadingImage} alt='loading' />
+                    {/* <img className={loading ? 'elVisible' : 'elNotVisible'} src={loadingImage} alt='loading' /> */}
                     <Paginado
                         pokemonPerPage={pokemonPerPage}
                         allPokemon={allPokemon.length}
                         paginado={paginado} />
                     {currentPokemon.map && currentPokemon.map(p => {
                         return (
-                            <Card name={p.name} image={p.image} key={p.id} id={p.id} type={!p.createdInDb ? p.type + (' ') : p.types.map(t => t.name + (' '))} attack={p.attack} defense={p.defense} />
+                            <Card name={p.name} image={p.image} key={p.id} id={p.id} type={!p.createdInDb ? p.type + (' ') : p.types.map(t => t.name + (' '))} attack={p.attack} defense={p.defense} hp={p.hp} />
                         );
                     })}
                 </div></>
