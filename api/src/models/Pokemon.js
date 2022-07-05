@@ -13,6 +13,10 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      // unique: {
+      //   args: true,
+      //   msg: 'Pokemon already exists'
+      // }
     },
     hp: {
       type: DataTypes.INTEGER,
@@ -36,6 +40,10 @@ module.exports = (sequelize) => {
     },
     weight: {
       type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    image: {
+      type: DataTypes.STRING,
       allowNull: true,
     },
     createdInDb: {
